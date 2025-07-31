@@ -251,7 +251,7 @@ export default function CDPLLanding() {
                 <div className="absolute inset-0 bg-gradient-to-br from-forest-400/20 to-forest-500/20 rounded-3xl transform rotate-6 animate-pulse-slow"></div>
                 <div className="relative bg-white rounded-3xl p-2 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
                   <Image
-                    src="/placeholder.svg?height=600&width=500"
+                    src="/cdpl.jpg?height=400&width=500"
                     alt="Luxury Property"
                     width={500}
                     height={600}
