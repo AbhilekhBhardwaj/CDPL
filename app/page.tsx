@@ -312,7 +312,7 @@ export default function CDPLLanding() {
           className="flex transition-transform duration-700 ease-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          {properties.map((property, index) => (
+          {properties.map((property) => (
             <div key={property.id} className="w-full flex-shrink-0">
               <div className="bg-gradient-to-br from-white to-beige-50 rounded-3xl overflow-hidden shadow-2xl border border-beige-200 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
                 <div className="grid lg:grid-cols-5 gap-0">
@@ -464,7 +464,7 @@ export default function CDPLLanding() {
                 className="text-xl text-blue-100 mb-10 leading-relaxed font-light animate-fade-in"
                 style={{ animationDelay: "0.6s" }}
               >
-                For over 15 years, CDPL has been at the forefront of luxury real estate in Ranchi, Jharkhand. We don't just sell
+                For over 15 years, CDPL has been at the forefront of luxury real estate in Ranchi, Jharkhand. We don&apos;t just sell
                 properties; we create lifestyle experiences that exceed expectations.
               </p>
 
