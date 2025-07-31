@@ -95,22 +95,18 @@ const testimonials = [
 export default function CDPLLanding() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
-    setIsVisible(true)
+    setIsVisible(true);
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % properties.length)
-    }, 6000)
-
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-
+      setCurrentSlide((prev) => (prev + 1) % properties.length);
+    }, 6000);
+  
     return () => {
-      clearInterval(timer)
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      clearInterval(timer);
+    };
+  }, []);
+  
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % properties.length)
@@ -287,148 +283,149 @@ export default function CDPLLanding() {
 
       {/* Properties Slider */}
       <section id="properties" className="py-24 bg-white">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center space-x-2 bg-forest-50 rounded-full px-6 py-3 mb-6 animate-scale-in">
-              <Heart className="h-5 w-5 text-forest-800 animate-pulse" />
-              <span className="text-forest-800 font-semibold">Curated Collection</span>
-            </div>
-            <h2 className="text-5xl md:text-7xl font-black text-navy-900 mb-8 animate-fade-in">
-              Featured
-              <span
-                className="block bg-gradient-to-r from-forest-700 to-forest-800 bg-clip-text text-transparent animate-slide-in-left"
-                style={{ animationDelay: "0.2s" }}
-              >
-                Properties
-              </span>
-            </h2>
-            <p
-              className="text-2xl text-navy-600 max-w-3xl mx-auto font-light animate-fade-in"
-              style={{ animationDelay: "0.4s" }}
-            >
-              Handpicked premium properties that redefine luxury living
-            </p>
-          </div>
+  <div className="container mx-auto px-4 lg:px-6">
+    <div className="text-center mb-20">
+      <div className="inline-flex items-center space-x-2 bg-forest-50 rounded-full px-6 py-3 mb-6 animate-scale-in">
+        <Heart className="h-5 w-5 text-forest-800 animate-pulse" />
+        <span className="text-forest-800 font-semibold">Curated Collection</span>
+      </div>
+      <h2 className="text-5xl md:text-7xl font-black text-navy-900 mb-8 animate-fade-in">
+        Featured
+        <span
+          className="block bg-gradient-to-r from-forest-700 to-forest-800 bg-clip-text text-transparent animate-slide-in-left"
+          style={{ animationDelay: "0.2s" }}
+        >
+          Properties
+        </span>
+      </h2>
+      <p
+        className="text-2xl text-navy-600 max-w-3xl mx-auto font-light animate-fade-in"
+        style={{ animationDelay: "0.4s" }}
+      >
+        Handpicked premium properties that redefine luxury living
+      </p>
+    </div>
 
-          <div className="relative max-w-7xl mx-auto">
-            <div className="overflow-hidden rounded-3xl">
-              <div
-                className="flex transition-transform duration-700 ease-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {properties.map((property, index) => (
-                  <div key={property.id} className="w-full flex-shrink-0">
-                    <div className="bg-gradient-to-br from-white to-beige-50 rounded-3xl overflow-hidden shadow-2xl border border-beige-200 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
-                      <div className="grid lg:grid-cols-5 gap-0">
-                        <div className="lg:col-span-3 relative h-96 lg:h-[600px] group">
-                          <Image
-                            src={property.image || "/placeholder.svg"}
-                            alt={property.title}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                          {property.featured && (
-                            <div className="absolute top-6 left-6 animate-bounce-gentle">
-                              <Badge className="bg-gradient-to-r from-forest-600 to-forest-800 text-white px-4 py-2 rounded-full font-semibold shadow-lg">
-                                <Zap className="h-4 w-4 mr-1" />
-                                Featured
-                              </Badge>
-                            </div>
-                          )}
-                          <div className="absolute top-6 right-6 animate-slide-in-right">
-                            <Badge className="bg-white/90 backdrop-blur-sm text-navy-700 px-4 py-2 rounded-full font-semibold border border-beige-200 hover:scale-105 transition-transform">
-                              {property.type}
-                            </Badge>
-                          </div>
-                        </div>
-
-                        <CardContent className="lg:col-span-2 p-12 flex flex-col justify-center">
-                          <div className="mb-8">
-                            <h3 className="text-4xl font-black text-navy-900 mb-4 leading-tight hover:text-forest-800 transition-colors duration-300">
-                              {property.title}
-                            </h3>
-                            <div className="flex items-center text-navy-600 mb-6 text-lg group">
-                              <MapPin className="h-6 w-6 mr-3 text-forest-800 group-hover:animate-bounce" />
-                              {property.location}
-                            </div>
-                            <div className="text-4xl font-black bg-gradient-to-r from-forest-700 to-forest-800 bg-clip-text text-transparent mb-8 animate-pulse-slow">
-                              {property.price}
-                            </div>
-                          </div>
-
-                          <div className="grid grid-cols-3 gap-4 mb-10">
-                            {property.bedrooms > 0 && (
-                              <div className="text-center p-4 bg-gradient-to-br from-forest-50 to-forest-100 rounded-2xl border border-forest-100 hover:scale-105 transition-transform duration-300 hover:shadow-lg">
-                                <div className="font-black text-2xl text-navy-900">{property.bedrooms}</div>
-                                <div className="text-sm text-navy-600 font-medium">Bedrooms</div>
-                              </div>
-                            )}
-                            <div className="text-center p-4 bg-gradient-to-br from-forest-50 to-forest-100 rounded-2xl border border-forest-100 hover:scale-105 transition-transform duration-300 hover:shadow-lg">
-                              <div className="font-black text-2xl text-navy-900">{property.bathrooms}</div>
-                              <div className="text-sm text-navy-600 font-medium">Bathrooms</div>
-                            </div>
-                            <div className="text-center p-4 bg-gradient-to-br from-forest-50 to-forest-100 rounded-2xl border border-forest-100 hover:scale-105 transition-transform duration-300 hover:shadow-lg">
-                              <div className="font-black text-lg text-navy-900">{property.area}</div>
-                              <div className="text-sm text-navy-600 font-medium">Area</div>
-                            </div>
-                          </div>
-
-                          <div className="flex gap-4">
-                            <Button className="flex-1 bg-gradient-to-r from-forest-600 to-forest-800 hover:from-forest-700 hover:to-forest-900 text-white rounded-2xl py-4 font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
-                              <Target className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-                              View Details
-                            </Button>
-                            <Button
-                              variant="outline"
-                              className="flex-1 border-2 border-forest-300 text-forest-800 hover:bg-forest-50 rounded-2xl py-4 font-semibold text-lg bg-white hover:scale-105 transition-all duration-300"
-                            >
-                              Schedule Visit
-                            </Button>
-                          </div>
-                        </CardContent>
+    <div className="relative max-w-7xl mx-auto">
+      <div className="overflow-hidden rounded-3xl">
+        <div
+          className="flex transition-transform duration-700 ease-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {properties.map((property, index) => (
+            <div key={property.id} className="w-full flex-shrink-0">
+              <div className="bg-gradient-to-br from-white to-beige-50 rounded-3xl overflow-hidden shadow-2xl border border-beige-200 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
+                <div className="grid lg:grid-cols-5 gap-0">
+                  <div className="lg:col-span-3 relative h-96 lg:h-[600px] group">
+                    <Image
+                      src={property.image || "/placeholder.svg"}
+                      alt={property.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    {property.featured && (
+                      <div className="absolute top-6 left-6 animate-bounce-gentle">
+                        <Badge className="bg-gradient-to-r from-forest-600 to-forest-800 text-white px-4 py-2 rounded-full font-semibold shadow-lg">
+                          <Zap className="h-4 w-4 mr-1" />
+                          Featured
+                        </Badge>
                       </div>
+                    )}
+                    <div className="absolute top-6 right-6 animate-slide-in-right">
+                      <Badge className="bg-white/90 backdrop-blur-sm text-navy-700 px-4 py-2 rounded-full font-semibold border border-beige-200 hover:scale-105 transition-transform">
+                        {property.type}
+                      </Badge>
                     </div>
                   </div>
-                ))}
+
+                  <CardContent className="lg:col-span-2 p-12 flex flex-col justify-center">
+                    <div className="mb-8">
+                      <h3 className="text-4xl font-black text-navy-900 mb-4 leading-tight hover:text-forest-800 transition-colors duration-300">
+                        {property.title}
+                      </h3>
+                      <div className="flex items-center text-navy-600 mb-6 text-lg group">
+                        <MapPin className="h-6 w-6 mr-3 text-forest-800 group-hover:animate-bounce" />
+                        {property.location}
+                      </div>
+                      <div className="text-4xl font-black bg-gradient-to-r from-forest-700 to-forest-800 bg-clip-text text-transparent mb-8 animate-pulse-slow">
+                        {property.price}
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-4 mb-10">
+                      {property.bedrooms > 0 && (
+                        <div className="text-center p-4 bg-gradient-to-br from-forest-50 to-forest-100 rounded-2xl border border-forest-100 hover:scale-105 transition-transform duration-300 hover:shadow-lg">
+                          <div className="font-black text-2xl text-navy-900">{property.bedrooms}</div>
+                          <div className="text-sm text-navy-600 font-medium">Bedrooms</div>
+                        </div>
+                      )}
+                      <div className="text-center p-4 bg-gradient-to-br from-forest-50 to-forest-100 rounded-2xl border border-forest-100 hover:scale-105 transition-transform duration-300 hover:shadow-lg">
+                        <div className="font-black text-2xl text-navy-900">{property.bathrooms}</div>
+                        <div className="text-sm text-navy-600 font-medium">Bathrooms</div>
+                      </div>
+                      <div className="text-center p-4 bg-gradient-to-br from-forest-50 to-forest-100 rounded-2xl border border-forest-100 hover:scale-105 transition-transform duration-300 hover:shadow-lg">
+                        <div className="font-black text-lg text-navy-900">{property.area}</div>
+                        <div className="text-sm text-navy-600 font-medium">Area</div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <Button className="flex-1 bg-gradient-to-r from-forest-600 to-forest-800 hover:from-forest-700 hover:to-forest-900 text-white rounded-2xl py-4 font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                        <Target className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+                        View Details
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="flex-1 border-2 border-forest-300 text-forest-800 hover:bg-forest-50 rounded-2xl py-4 font-semibold text-lg bg-white hover:scale-105 transition-all duration-300"
+                      >
+                        Schedule Visit
+                      </Button>
+                    </div>
+                  </CardContent>
+                </div>
               </div>
             </div>
-
-            {/* Enhanced Navigation Buttons */}
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white border-2 border-forest-200 shadow-xl w-16 h-16 rounded-2xl hover:scale-110 transition-all duration-300 group"
-              onClick={prevSlide}
-            >
-              <ChevronLeft className="h-8 w-8 text-forest-800 group-hover:-translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white border-2 border-forest-200 shadow-xl w-16 h-16 rounded-2xl hover:scale-110 transition-all duration-300 group"
-              onClick={nextSlide}
-            >
-              <ChevronRight className="h-8 w-8 text-forest-800 group-hover:translate-x-1 transition-transform" />
-            </Button>
-
-            {/* Enhanced Dots Indicator */}
-            <div className="flex justify-center mt-12 space-x-3">
-              {properties.map((_, index) => (
-                <button
-                  key={index}
-                  className={`h-4 rounded-full transition-all duration-300 hover:scale-125 ${
-                    index === currentSlide
-                      ? "bg-gradient-to-r from-forest-600 to-forest-800 w-12 animate-pulse"
-                      : "bg-forest-200 w-4 hover:bg-forest-300"
-                  }`}
-                  onClick={() => setCurrentSlide(index)}
-                />
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
+
+      {/* Enhanced Navigation Buttons */}
+      <Button
+        variant="outline"
+        size="icon"
+        className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white border-2 border-forest-200 shadow-xl w-16 h-16 rounded-2xl hover:scale-110 transition-all duration-300 group"
+        onClick={prevSlide}
+      >
+        <ChevronLeft className="h-8 w-8 text-forest-800 group-hover:-translate-x-1 transition-transform" />
+      </Button>
+      <Button
+        variant="outline"
+        size="icon"
+        className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white border-2 border-forest-200 shadow-xl w-16 h-16 rounded-2xl hover:scale-110 transition-all duration-300 group"
+        onClick={nextSlide}
+      >
+        <ChevronRight className="h-8 w-8 text-forest-800 group-hover:translate-x-1 transition-transform" />
+      </Button>
+
+      {/* Enhanced Dots Indicator */}
+      <div className="flex justify-center mt-12 space-x-3">
+        {properties.map((_, index) => (
+          <button
+            key={index}
+            className={`h-4 rounded-full transition-all duration-300 hover:scale-125 ${
+              index === currentSlide
+                ? "bg-gradient-to-r from-forest-600 to-forest-800 w-12 animate-pulse"
+                : "bg-forest-200 w-4 hover:bg-forest-300"
+            }`}
+            onClick={() => setCurrentSlide(index)}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* About Section */}
       <section
